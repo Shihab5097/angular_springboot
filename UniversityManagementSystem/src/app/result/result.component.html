@@ -1,0 +1,65 @@
+<h2>Results</h2>
+
+<div class="filters">
+  <select [(ngModel)]="selDeptId" (ngModelChange)="onDeptChange()" name="dept">
+    <option [ngValue]="null">-- Select Department --</option>
+    <option *ngFor="let d of departments" [ngValue]="d.departmentId">{{ d.departmentName }}</option>
+  </select>
+
+  <select [(ngModel)]="selSemId" (ngModelChange)="onSemChange()" name="sem" [disabled]="!selDeptId">
+    <option [ngValue]="null">-- Select Semester --</option>
+    <option *ngFor="let s of semesters" [ngValue]="s.semesterId">{{ s.semesterName }}</option>
+  </select>
+
+  <select [(ngModel)]="selCourseId" (ngModelChange)="onCourseChange()" name="course" [disabled]="!selSemId">
+    <option [ngValue]="null">-- Select Course --</option>
+    <option *ngFor="let c of courses" [ngValue]="c.courseId">{{ c.courseTitle }}</option>
+  </select>
+</div>
+
+<table *ngIf="uniqueStudents.length">
+  <thead>
+    <tr>
+      <th>Student ID</th>
+      <th>Name</th>
+      <th>Class Test</th>
+      <th>Lab</th>
+      <th>Attendance %</th>
+      <th>Att. Mark</th>
+      <th>Final Exam</th>
+      <th>Total Marks</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let sid of uniqueStudents">
+      <td>{{ sid }}</td>
+      <td>{{ getStudentName(sid) }}</td>
+
+      <td>
+        <input type="number" min="0" max="100" [(ngModel)]="getDraft(sid).classTestMark" name="ct_{{sid}}">
+      </td>
+
+      <td>
+        <input type="number" min="0" max="100" [(ngModel)]="getDraft(sid).labMark" name="lab_{{sid}}">
+      </td>
+
+      <td>{{ getPct(sid) }}%</td>
+
+      <td>
+        <input type="number" min="0" [max]="getPct(sid)" [(ngModel)]="getDraft(sid).attendanceMark" name="attm_{{sid}}">
+      </td>
+
+      <td>
+        <input type="number" min="0" max="100" [(ngModel)]="getDraft(sid).finalExamMark" name="final_{{sid}}">
+      </td>
+
+      <td>{{ calculateTotalMarks(getDraft(sid)) }}</td>
+
+      <td class="r-actions">
+        <button class="r-btn r-btn-save" (click)="saveOne(sid)">Save</button>
+        <button class="r-btn r-btn-delete" [disabled]="!getDraft(sid).resultId" (click)="deleteByStudent(sid)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,88 @@
+<!-- src/app/assign-course-teacher/assign-course-teacher.component.html -->
+<h2>Assign Course to Teacher</h2>
+
+<div class="filters">
+  <select [(ngModel)]="selDeptId"
+          (ngModelChange)="onDeptChange()"
+          name="dept" required>
+    <option [ngValue]="null">-- Select Department --</option>
+    <option *ngFor="let d of departments" [ngValue]="d.departmentId">
+      {{ d.departmentName }}
+    </option>
+  </select>
+
+  <select [(ngModel)]="selTeacherId"
+          [disabled]="!selDeptId"
+          name="teacher" required>
+    <option [ngValue]="null">-- Select Teacher --</option>
+    <option *ngFor="let t of teachers" [ngValue]="t.teacherId">
+      {{ t.teacherName }}
+    </option>
+  </select>
+
+  <select [(ngModel)]="selProgId"
+          (ngModelChange)="onProgChange()"
+          [disabled]="!selDeptId"
+          name="prog" required>
+    <option [ngValue]="null">-- Select Program --</option>
+    <option *ngFor="let p of programs" [ngValue]="p.programId">
+      {{ p.programName }}
+    </option>
+  </select>
+
+  <select [(ngModel)]="selBatchId"
+          (ngModelChange)="onBatchChange()"
+          [disabled]="!selProgId"
+          name="batch" required>
+    <option [ngValue]="null">-- Select Batch --</option>
+    <option *ngFor="let b of batches" [ngValue]="b.batchId">
+      {{ b.name }}
+    </option>
+  </select>
+
+  <select [(ngModel)]="selSemId"
+          (ngModelChange)="onSemChange()"
+          [disabled]="!selBatchId"
+          name="sem" required>
+    <option [ngValue]="null">-- Select Semester --</option>
+    <option *ngFor="let s of semesters" [ngValue]="s.semesterId">
+      {{ s.semesterName }}
+    </option>
+  </select>
+
+  <select [(ngModel)]="selCourseId"
+          [disabled]="!selTeacherId"
+          name="course" required>
+    <option [ngValue]="null">-- Select Course --</option>
+    <option *ngFor="let c of courses" [ngValue]="c.courseId">
+      {{ c.courseTitle }}
+    </option>
+  </select>
+
+  <button (click)="assign()"
+          [disabled]="!selTeacherId || !selCourseId">
+    Assign
+  </button>
+</div>
+
+<h3>Assigned Courses</h3>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Teacher</th>
+      <th>Course</th>
+      <th>Program</th>
+      <th>Department</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let a of assignments">
+      <td>{{ a.id }}</td>
+      <td>{{ getTeacherName(a.teacherId) }}</td>
+      <td>{{ getCourseTitle(a.courseId) }}</td>
+      <td>{{ getProgramName(a.courseId) }}</td>
+      <td>{{ getDepartmentName(a.courseId) }}</td>
+    </tr>
+  </tbody>
+</table>

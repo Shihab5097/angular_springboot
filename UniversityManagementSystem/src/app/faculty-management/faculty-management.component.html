@@ -1,0 +1,138 @@
+<div class="faculty-page">
+  <h2>Faculty Management</h2>
+
+  
+  <div class="form-section">
+    <div class="form-row">
+      <label>Faculty Code:</label>
+      <input
+        type="text"
+        name="facultyCode"
+        [(ngModel)]="facultyForm.facultyCode"
+        placeholder="Enter Faculty Code"
+      />
+    </div>
+
+    <div class="form-row">
+      <label>Faculty Name:</label>
+      <input
+        type="text"
+        name="facultyName"
+        [(ngModel)]="facultyForm.facultyName"
+        placeholder="Enter Faculty Name"
+      />
+    </div>
+
+    <div class="form-row">
+      <label>Dean Name:</label>
+      <input
+        type="text"
+        name="deanName"
+        [(ngModel)]="facultyForm.deanName"
+        placeholder="Enter Dean Name"
+      />
+    </div>
+
+    <div class="form-row">
+      <label>Dean Email:</label>
+      <input
+        type="email"
+        name="deanEmail"
+        [(ngModel)]="facultyForm.deanEmail"
+        placeholder="Enter Dean Email"
+      />
+    </div>
+
+    <div class="form-row">
+      <label>Dean Contact:</label>
+      <input
+        type="text"
+        name="deanContact"
+        [(ngModel)]="facultyForm.deanContact"
+        placeholder="Enter Dean Contact"
+      />
+    </div>
+
+    <div class="form-row">
+      <label>Established Year:</label>
+      <input
+        type="number"
+        name="establishedYear"
+        [(ngModel)]="facultyForm.establishedYear"
+      />
+    </div>
+
+    <div class="form-row">
+      <label>Description:</label>
+      <textarea
+        name="description"
+        [(ngModel)]="facultyForm.description"
+        placeholder="Enter Description"
+      ></textarea>
+    </div>
+
+    <div class="form-row">
+      <label>Faculty Website:</label>
+      <input
+        type="text"
+        name="facultyWebsite"
+        [(ngModel)]="facultyForm.facultyWebsite"
+        placeholder="Enter Website URL"
+      />
+    </div>
+
+    <div class="form-row">
+      <label>Location:</label>
+      <input
+        type="text"
+        name="location"
+        [(ngModel)]="facultyForm.location"
+        placeholder="Enter Location"
+      />
+    </div>
+
+    <div class="form-row">
+      <label>Status:</label>
+      <select name="status" [(ngModel)]="facultyForm.status">
+        <option value="Active">Active</option>
+        <option value="Inactive">Inactive</option>
+      </select>
+    </div>
+
+    <div class="form-actions">
+      <button (click)="saveFaculty()">Save</button>
+      <button (click)="resetForm()">Reset</button>
+    </div>
+  </div>
+
+  <hr />
+
+  
+  <div class="table-section">
+    <table>
+      <thead>
+        <tr>
+          <th>Code</th>
+          <th>Name</th>
+          <th>Dean</th>
+          <th>Year</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let fac of faculties">
+          <td>{{ fac.facultyCode }}</td>
+          <td>{{ fac.facultyName }}</td>
+          <td>{{ fac.deanName }}</td>
+          <td>{{ fac.establishedYear }}</td>
+          <td>{{ fac.status }}</td>
+          <td>
+            <button (click)="editFaculty(fac)">Edit</button>
+            <button (click)="deleteFaculty(fac.facultyId!)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

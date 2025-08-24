@@ -1,0 +1,49 @@
+<div>
+  <h2>Grades</h2>
+
+  <div class="filters">
+    <label>
+      <span>Department:</span>
+      <select [(ngModel)]="selectedDepartment" (ngModelChange)="onDepartmentChange($event)">
+        <option *ngFor="let d of departments" [ngValue]="d">{{ d.departmentName }}</option>
+      </select>
+    </label>
+
+    <label>
+      <span>Semester:</span>
+      <select [(ngModel)]="selectedSemester" (ngModelChange)="onSemesterChange($event)">
+        <option *ngFor="let s of semesters" [ngValue]="s">{{ s.semesterName }}</option>
+      </select>
+    </label>
+
+    <button (click)="saveAll()" [disabled]="busy || !computedGrades.length">Save All</button>
+  </div>
+
+  <div class="progress" *ngIf="busy">
+    <div class="progress__bar"></div>
+  </div>
+
+  <div>
+    <table *ngIf="computedGrades.length; else noData">
+      <thead>
+        <tr>
+          <th>Student</th>
+          <th>Total Marks</th>
+          <th>Grade</th>
+          <th>CGPA</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let g of computedGrades">
+          <td>{{ g.studentName }}</td>
+          <td>{{ g.totalMarks }}</td>
+          <td>{{ g.grade }}</td>
+          <td>{{ g.cgpa | number:'1.2-2' }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <ng-template #noData>
+      <div>No data</div>
+    </ng-template>
+  </div>
+</div>

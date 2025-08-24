@@ -1,0 +1,72 @@
+<h2>Student Management</h2>
+<form (ngSubmit)="saveStudent()">
+  <input [(ngModel)]="studentForm.studentName" name="studentName" placeholder="Student Name" required />
+  <input [(ngModel)]="studentForm.studentEmail" name="studentEmail" placeholder="Email" required />
+  <input [(ngModel)]="studentForm.studentContact" name="studentContact" placeholder="Contact" required />
+
+  <select [(ngModel)]="studentForm.status" name="status" required>
+    <option value="" disabled selected>Status</option>
+    <option value="Active">Active</option>
+    <option value="Inactive">Inactive</option>
+  </select>
+
+  <label>Department</label>
+  <select [(ngModel)]="studentForm.department.departmentId"
+          name="departmentId"
+          (ngModelChange)="onDepartmentChange()"
+          required>
+    <option [ngValue]="null" disabled selected>Select Department</option>
+    <option *ngFor="let d of departments" [ngValue]="d.departmentId">{{ d.departmentName }}</option>
+  </select>
+
+  <label>Academic Program</label>
+  <select [(ngModel)]="studentForm.academicProgram.programId"
+          name="programId"
+          (ngModelChange)="onProgramChange()"
+          required>
+    <option [ngValue]="null" disabled selected>Select Program</option>
+    <option *ngFor="let p of filteredPrograms" [ngValue]="p.programId">{{ p.programName }}</option>
+  </select>
+
+  <label>Batch</label>
+  <select [(ngModel)]="studentForm.batch.batchId" name="batchId" required>
+    <option [ngValue]="null" disabled selected>Select Batch</option>
+    <option *ngFor="let b of filteredBatches" [ngValue]="b.batchId">{{ b.name }}</option>
+  </select>
+
+  <label>Semester</label>
+  <select [(ngModel)]="studentForm.semester.semesterId" name="semesterId" required>
+    <option [ngValue]="null" disabled selected>Select Semester</option>
+    <option *ngFor="let s of filteredSemesters" [ngValue]="s.semesterId">{{ s.semesterName }}</option>
+  </select>
+
+  <button type="submit">{{ studentForm.studentId ? 'Update' : 'Add' }} Student</button>
+  <button type="button" (click)="resetForm()">Reset</button>
+</form>
+
+<hr/>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th><th>Email</th><th>Contact</th><th>Status</th>
+      <th>Dept</th><th>Program</th><th>Batch</th><th>Semester</th><th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let st of students">
+      <td>{{ st.studentName }}</td>
+      <td>{{ st.studentEmail }}</td>
+      <td>{{ st.studentContact }}</td>
+      <td>{{ st.status }}</td>
+      <td>{{ st.department.departmentName }}</td>
+      <td>{{ st.academicProgram.programName }}</td>
+      <td>{{ st.batch.name }}</td>
+      <td>{{ st.semester.semesterName }}</td>
+      <td>
+        <button (click)="editStudent(st)">Edit</button>
+        <button (click)="deleteStudent(st.studentId!)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

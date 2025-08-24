@@ -1,0 +1,65 @@
+<h2>Assign Course to Students</h2>
+
+<!-- ???????? ??????? -->
+<div class="filters">
+  <select [(ngModel)]="selectedDeptId" (change)="onDeptChange()" name="dept">
+    <option [ngValue]="null">Select Department</option>
+    <option *ngFor="let d of departments" [ngValue]="d.departmentId">{{ d.departmentName }}</option>
+  </select>
+
+  <select [(ngModel)]="selectedProgId" (change)="onProgChange()" name="prog">
+    <option [ngValue]="null">Select Program</option>
+    <option *ngFor="let p of filteredPrograms" [ngValue]="p.programId">{{ p.programName }}</option>
+  </select>
+
+  <select [(ngModel)]="selectedBatchId" (change)="onBatchChange()" name="batch">
+    <option [ngValue]="null">Select Batch</option>
+    <option *ngFor="let b of filteredBatches" [ngValue]="b.batchId">{{ b.name }}</option>
+  </select>
+
+  <select [(ngModel)]="selectedSemId" (change)="onSemChange()" name="sem">
+    <option [ngValue]="null">Select Semester</option>
+    <option *ngFor="let s of filteredSemesters" [ngValue]="s.semesterId">{{ s.semesterName }}</option>
+  </select>
+
+  <select [(ngModel)]="selectedCourseId" (change)="onCourseChange()" name="course">
+    <option [ngValue]="null">Select Course</option>
+    <option *ngFor="let c of courses" [ngValue]="c.courseId">{{ c.courseTitle }}</option>
+  </select>
+</div>
+
+<!-- ????????? ????? -->
+<div *ngIf="filteredStudents.length">
+  <h3>Select Students</h3>
+  <table>
+    <tr *ngFor="let st of filteredStudents">
+      <td>
+        <input type="checkbox"
+               [checked]="selectedStudentIds.includes(st.studentId!)"
+               (change)="toggleStudent(st.studentId!, $event)" />
+      </td>
+      <td>{{ st.studentName }}</td>
+      <td>{{ st.studentEmail }}</td>
+    </tr>
+  </table>
+  <button (click)="assign()">Assign Selected Students</button>
+</div>
+
+<!-- ????????????? ????? -->
+<div *ngIf="assignedStudents.length">
+  <h3>Already Assigned Students for this Course</h3>
+  <table>
+    <tr>
+      <th>Name</th><th>Email</th><th>Action</th>
+    </tr>
+    <tr *ngFor="let a of assignedStudents">
+      <td>{{ a.student.studentName }}</td>
+      <td>{{ a.student.studentEmail }}</td>
+      <td>
+        <button (click)="remove(a.course.courseId!, a.student.studentId!)">
+          Remove
+        </button>
+      </td>
+    </tr>
+  </table>
+</div>

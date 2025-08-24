@@ -1,0 +1,40 @@
+<h2>Teacher Management</h2>
+<form (ngSubmit)="saveTeacher()">
+  <input [(ngModel)]="teacherForm.teacherName" name="teacherName" placeholder="Name" required />
+  <input [(ngModel)]="teacherForm.teacherEmail" name="teacherEmail" placeholder="Email" required />
+  <input [(ngModel)]="teacherForm.teacherContact" name="teacherContact" placeholder="Contact" required />
+  <input [(ngModel)]="teacherForm.designation" name="designation" placeholder="Designation" required />
+  <select [(ngModel)]="teacherForm.status" name="status" required>
+    <option value="" disabled selected>Status</option>
+    <option value="Active">Active</option>
+    <option value="Inactive">Inactive</option>
+  </select>
+  <select [(ngModel)]="teacherForm.department.departmentId" name="departmentId" required>
+    <option [ngValue]="null" disabled selected>Department</option>
+    <option *ngFor="let d of departments" [ngValue]="d.departmentId">{{ d.departmentName }}</option>
+  </select>
+  <button type="submit">{{ teacherForm.teacherId ? 'Update' : 'Add' }} Teacher</button>
+  <button type="button" (click)="resetForm()">Reset</button>
+</form>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th><th>Email</th><th>Contact</th><th>Designation</th><th>Status</th><th>Department</th><th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let t of teachers">
+      <td>{{ t.teacherName }}</td>
+      <td>{{ t.teacherEmail }}</td>
+      <td>{{ t.teacherContact }}</td>
+      <td>{{ t.designation }}</td>
+      <td>{{ t.status }}</td>
+      <td>{{ t.department.departmentName }}</td>
+      <td>
+        <button (click)="editTeacher(t)">Edit</button>
+        <button (click)="deleteTeacher(t.teacherId!)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

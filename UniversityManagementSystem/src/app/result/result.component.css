@@ -1,0 +1,114 @@
+:host {
+  display: block;
+}
+
+h2 {
+  font-size: 28px;
+  color: #2c3e50;
+  border-left: 6px solid #27ae60;
+  padding-left: 1rem;
+  margin-bottom: 2rem;
+}
+
+/* Filters */
+.filters {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.filters select {
+  padding: 10px !important;
+  font-size: 15px !important;
+  border: 1px solid #ccc !important;
+  border-radius: 6px !important;
+  background: #f9f9f9 !important;
+  min-width: 180px;
+  outline: none;
+}
+
+/* Table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  font-size: 15px;
+}
+
+table th,
+table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+table th {
+  background-color: #d1f2eb;
+  color: #145a32;
+  font-weight: bold;
+}
+
+table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+table tr:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+table input[type="number"] {
+  padding: 6px !important;
+  border: 1px solid #ccc !important;
+  border-radius: 4px !important;
+  width: 80px;
+  text-align: center;
+  outline: none;
+}
+
+/* Actions cell */
+.r-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Conflict-free buttons */
+.r-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 80px;
+  padding: 6px 12px;
+  color: #fff !important;
+  border: none !important;
+  font-weight: 600;
+  border-radius: 6px !important;
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+  line-height: 1;
+  text-decoration: none !important;
+}
+
+.r-btn:disabled {
+  background-color: #ccc !important;
+  cursor: not-allowed;
+  color: #fff !important;
+}
+
+.r-btn-save {
+  background-color: #2ecc71 !important;
+}
+
+.r-btn-save:hover {
+  background-color: #27ae60 !important;
+}
+
+.r-btn-delete {
+  background-color: #e74c3c !important;
+}
+
+.r-btn-delete:hover {
+  background-color: #c0392b !important;
+}

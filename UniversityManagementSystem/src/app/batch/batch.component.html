@@ -1,0 +1,54 @@
+<div class="batch-container">
+  <h2>Batch Management</h2>
+  <form (ngSubmit)="saveBatch(batchForm)" #batchForm="ngForm" class="batch-form">
+
+    <input type="text" [(ngModel)]="newBatch.name" name="name" placeholder="Batch Name" required />
+    <input type="text" [(ngModel)]="newBatch.startYear" name="startYear" placeholder="Start Year" required />
+    <input type="text" [(ngModel)]="newBatch.endYear" name="endYear" placeholder="End Year" required />
+
+    <!-- Department Dropdown -->
+    <select [(ngModel)]="newBatch.department" name="department" required>
+      <option [ngValue]="null" disabled selected>Select Department</option>
+      <option *ngFor="let dept of departments" [ngValue]="dept">{{ dept.departmentName }}</option>
+    </select>
+
+    <!-- Academic Program Dropdown -->
+    <select [(ngModel)]="newBatch.academicProgram" name="academicProgram" required>
+      <option [ngValue]="null" disabled selected>Select Academic Program</option>
+      <option *ngFor="let prog of programs" [ngValue]="prog">{{ prog.programName }}</option>
+    </select>
+
+    <button type="submit">{{ newBatch.batchId ? 'Update' : 'Add' }} Batch</button>
+    <button type="button" (click)="resetForm(batchForm)">Reset</button>
+
+  </form>
+</div>
+
+<hr />
+
+<!-- Table showing batches -->
+<table class="batch-table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Start Year</th>
+      <th>End Year</th>
+      <th>Department</th>
+      <th>Academic Program</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let batch of batches">
+      <td>{{ batch.name }}</td>
+      <td>{{ batch.startYear }}</td>
+      <td>{{ batch.endYear }}</td>
+      <td>{{ batch.department?.departmentName }}</td>
+      <td>{{ batch.academicProgram?.programName }}</td>
+      <td>
+        <button (click)="editBatch(batch)">Edit</button>
+        <button (click)="deleteBatch(batch.batchId!)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

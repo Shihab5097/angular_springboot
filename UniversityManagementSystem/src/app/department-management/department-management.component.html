@@ -1,0 +1,118 @@
+<div class="department-page">
+  <h2>Department Management</h2>
+
+  
+  <div class="form-section">
+    
+    <div class="form-row">
+      <label>Department Code:</label>
+      <input
+        type="text"
+        name="departmentCode"
+        [(ngModel)]="departmentForm.departmentCode"
+        placeholder="Enter Department Code"
+      />
+    </div>
+
+    
+    <div class="form-row">
+      <label>Department Name:</label>
+      <input
+        type="text"
+        name="departmentName"
+        [(ngModel)]="departmentForm.departmentName"
+        placeholder="Enter Department Name"
+      />
+    </div>
+
+    
+    <div class="form-row">
+      <label>Chairman Name:</label>
+      <input
+        type="text"
+        name="chairmanName"
+        [(ngModel)]="departmentForm.chairmanName"
+        placeholder="Enter Chairman Name"
+      />
+    </div>
+
+    
+    <div class="form-row">
+      <label>Established Year:</label>
+      <input
+        type="number"
+        name="establishedYear"
+        [(ngModel)]="departmentForm.establishedYear"
+      />
+    </div>
+
+    
+    <div class="form-row">
+      <label>Description:</label>
+      <textarea
+        name="description"
+        [(ngModel)]="departmentForm.description"
+        placeholder="Enter Description"
+      ></textarea>
+    </div>
+
+    
+    <div class="form-row">
+      <label>Faculty:</label>
+      <select name="faculty" [(ngModel)]="departmentForm.faculty">
+        <option [ngValue]="null" disabled>Select a Faculty</option>
+        <option *ngFor="let fac of faculties" [ngValue]="fac">
+          {{ fac.facultyName }}
+        </option>
+      </select>
+    </div>
+
+    
+    <div class="form-row">
+      <label>Status:</label>
+      <select name="status" [(ngModel)]="departmentForm.status">
+        <option value="Active">Active</option>
+        <option value="Inactive">Inactive</option>
+      </select>
+    </div>
+
+    
+    <div class="form-actions">
+      <button (click)="saveDepartment()">Save</button>
+      <button (click)="resetForm()">Reset</button>
+    </div>
+  </div>
+
+  <hr />
+
+  
+  <div class="table-section">
+    <table>
+      <thead>
+        <tr>
+          <th>Code</th>
+          <th>Name</th>
+          <th>Chairman</th>
+          <th>Year</th>
+          <th>Faculty</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let dept of departments">
+          <td>{{ dept.departmentCode }}</td>
+          <td>{{ dept.departmentName }}</td>
+          <td>{{ dept.chairmanName }}</td>
+          <td>{{ dept.establishedYear }}</td>
+          <td>{{ dept.faculty?.facultyName }}</td>
+          <td>{{ dept.status }}</td>
+          <td>
+            <button (click)="editDepartment(dept)">Edit</button>
+            <button (click)="deleteDepartment(dept.departmentId!)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

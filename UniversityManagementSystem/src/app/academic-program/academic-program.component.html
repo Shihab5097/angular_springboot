@@ -1,0 +1,119 @@
+
+<div class="program-page" style="padding: 20px;">
+  <h2>Academic Program Management</h2>
+
+  
+  <div class="form-row" style="margin-bottom: 15px;">
+    <label for="deptSelect" style="display: inline-block; width: 150px;">Select Department:</label>
+    <select
+      id="deptSelect"
+      [(ngModel)]="selectedDepartmentId"
+      (change)="onDepartmentChange()"
+      style="width: 250px;"
+    >
+      <option [ngValue]="null">-- Select Department --</option>
+      <option *ngFor="let dept of departments" [ngValue]="dept.departmentId">
+        {{ dept.departmentName }} ({{ dept.departmentCode }})
+      </option>
+    </select>
+  </div>
+
+  
+  <div *ngIf="selectedDepartmentId" class="form-section" style="border: 1px solid #ccc; padding: 15px; border-radius: 4px; margin-bottom: 20px;">
+    <div class="form-row" style="margin-bottom: 10px;">
+      <label for="programCode" style="display: inline-block; width: 150px;">Program Code:</label>
+      <input
+        id="programCode"
+        type="text"
+        [(ngModel)]="programForm.programCode"
+        placeholder="Enter Program Code"
+        style="width: 250px;"
+      />
+    </div>
+
+    <div class="form-row" style="margin-bottom: 10px;">
+      <label for="programName" style="display: inline-block; width: 150px;">Program Name:</label>
+      <input
+        id="programName"
+        type="text"
+        [(ngModel)]="programForm.programName"
+        placeholder="Enter Program Name"
+        style="width: 250px;"
+      />
+    </div>
+
+    <div class="form-row" style="margin-bottom: 10px;">
+      <label for="durationYears" style="display: inline-block; width: 150px;">Duration (Years):</label>
+      <input
+        id="durationYears"
+        type="number"
+        [(ngModel)]="programForm.durationYears"
+        min="1"
+        style="width: 100px;"
+      />
+    </div>
+
+    <div class="form-row" style="margin-bottom: 10px;">
+      <label for="description" style="display: inline-block; width: 150px;">Description:</label>
+      <textarea
+        id="description"
+        [(ngModel)]="programForm.description"
+        placeholder="Enter Description"
+        rows="3"
+        style="width: 250px;"
+      ></textarea>
+    </div>
+
+    <div class="form-row" style="margin-bottom: 15px;">
+      <label for="statusSelect" style="display: inline-block; width: 150px;">Status:</label>
+      <select
+        id="statusSelect"
+        [(ngModel)]="programForm.status"
+        style="width: 150px;"
+      >
+        <option value="Active">Active</option>
+        <option value="Inactive">Inactive</option>
+      </select>
+    </div>
+
+    <div class="form-actions" style="margin-top: 10px;">
+      <button (click)="saveProgram()" style="margin-right: 10px;">Save</button>
+      <button (click)="resetForm()">Reset</button>
+    </div>
+  </div>
+
+  <hr *ngIf="selectedDepartmentId" />
+
+  
+  <div *ngIf="selectedDepartmentId" class="table-section" style="margin-top: 20px;">
+    <h3>Programs under Selected Department</h3>
+    <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; width: 100%; margin-top: 10px;">
+      <thead style="background: #f5f5f5;">
+        <tr>
+          <th style="text-align: left; width: 20%;">Code</th>
+          <th style="text-align: left; width: 30%;">Name</th>
+          <th style="text-align: left; width: 15%;">Duration</th>
+          <th style="text-align: left; width: 15%;">Status</th>
+          <th style="text-align: center; width: 20%;">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let prog of programs">
+          <td>{{ prog.programCode }}</td>
+          <td>{{ prog.programName }}</td>
+          <td>{{ prog.durationYears }} yr</td>
+          <td>{{ prog.status }}</td>
+          <td style="text-align: center;">
+            <button (click)="editProgram(prog)" style="margin-right: 8px;">Edit</button>
+            <button (click)="deleteProgram(prog.programId!)">Delete</button>
+          </td>
+        </tr>
+        <tr *ngIf="programs.length === 0">
+          <td colspan="5" style="text-align: center; padding: 15px;">
+            No programs found for this department.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,280 @@
+/* Reset and Base Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #f8f9fa;
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Header Styles */
+header {
+    background-color: #d9f0fa;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #1a73e8;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.logo::before {
+    content: "🏛️"; /* University emoji */
+    font-size: 1.5rem;
+}
+
+/* Navigation */
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+}
+
+nav ul li a {
+    color: #1a73e8;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+nav ul li a:hover {
+    background-color: #e8f0fe;
+}
+
+/* Layout Container */
+.container {
+    display: flex;
+    min-height: calc(100vh - 60px);
+}
+
+/* Icon-Enhanced Sidebar */
+.sidebar {
+    width: 280px;
+    background-color: #cdd5df;
+    padding: 2rem 0;
+    border-right: 1px solid #b9c3ca;
+    transition: all 0.3s ease;
+}
+
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-menu li {
+    margin: 0.25rem 1rem;
+}
+
+.sidebar-menu li a {
+    display: block;
+    padding: 0.85rem 1.5rem;
+    font-size: 0.95rem;
+    font-weight: 600; /* Bold text */
+    color: #2c3e50; /* Darker text for better contrast */
+    text-decoration: none;
+    border-radius: 6px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background-color: rgba(255, 255, 255, 0.3); /* Very light blue tint */
+    border: 1px solid #b9c3ca;
+}
+
+/* Sidebar Icons/Emojis */
+.sidebar-menu li a::before {
+    font-size: 1.1rem;
+    width: 24px;
+    text-align: center;
+}
+
+.sidebar-menu li:nth-child(1) a::before { content: "📊"; } /* Dashboard */
+.sidebar-menu li:nth-child(2) a::before { content: "👨‍🎓"; } /* Student */
+.sidebar-menu li:nth-child(3) a::before { content: "👩‍🏫"; } /* Faculty */
+.sidebar-menu li:nth-child(4) a::before { content: "🏛️"; } /* Department */
+.sidebar-menu li:nth-child(4) a::before { content: "🏛️"; } /* Department */
+.sidebar-menu li:nth-child(4) a::before { content: "🏛️"; } /* Department */
+.sidebar-menu li:nth-child(5) a::before { content: "📚"; } /* Course */
+.sidebar-menu li:nth-child(6) a::before { content: "✓"; } /* Attendance */
+.sidebar-menu li:nth-child(7) a::before { content: "🎓"; } /* Grades */
+.sidebar-menu li:nth-child(8) a::before { content: "⏰"; } /* Timetable */
+.sidebar-menu li:nth-child(9) a::before { content: "📝"; } /* Examination */
+.sidebar-menu li:nth-child(10) a::before { content: "📖"; } /* Library */
+.sidebar-menu li:nth-child(11) a::before { content: "💰"; } /* Finance */
+.sidebar-menu li:nth-child(12) a::before { content: "📈"; } /* Reports */
+.sidebar-menu li:nth-child(13) a::before { content: "⚙️"; } /* Settings */
+
+.sidebar-menu li a:hover {
+    background-color: #e1e8ff;
+    color: #1a73e8;
+    transform: translateX(5px);
+}
+
+.sidebar-menu li.active a {
+    background-color: #c1cee9;
+    color: #1a73e8;
+    font-weight: 600;
+    position: relative;
+}
+
+.sidebar-menu li.active a::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background-color: #1a73e8;
+    border-radius: 0 4px 4px 0;
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    padding: 2rem;
+    background-color: #ffffff;
+}
+
+/* Dashboard Cards */
+.dashboard-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-left: 4px solid #1a73e8;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.card h3 {
+    color: #1a73e8;
+    margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+}
+
+.card p {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Section Titles */
+.section-title {
+    margin-bottom: 1.5rem;
+    color: #2c3e50;
+    padding-left: 0.75rem;
+    font-size: 1.3rem;
+    font-weight: 600;
+    position: relative;
+}
+
+.section-title::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background-color: #1a73e8;
+    border-radius: 4px;
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 2rem;
+    background-color: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+table th, table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+table th {
+    background-color: #f5f9ff;
+    color: #1a73e8;
+    font-weight: 600;
+}
+
+table tr:hover {
+    background-color: #f8f9ff;
+}
+
+/* Buttons */
+.btn {
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-primary {
+    background-color: #1a73e8;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #0d5bcc;
+}
+
+.btn-danger {
+    background-color: #e53935;
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #c62828;
+}
+
+/* Footer */
+footer {
+    background-color: #ffffff;
+    color: #3c4b64;
+    text-align: center;
+    padding: 1rem;
+    border-top: 1px solid #e0e0e0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    font-size: 0.9rem;
+}

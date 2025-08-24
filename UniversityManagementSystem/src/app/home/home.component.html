@@ -1,0 +1,45 @@
+<header>
+  <div class="logo">University Management System</div>
+  <nav>
+    <ul>
+      <li><a routerLink="/home/dashboard">Dashboard</a></li>
+      <!-- <li><a routerLink="/home/notifications">Notifications</a></li>
+      <li><a routerLink="/home/messages">Messages</a></li>
+      <li><a routerLink="/home/profile">Profile</a></li> -->
+      <li><a routerLink="/home/logout">Logout</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="container">
+  <aside class="sidebar">
+    <ul class="sidebar-menu">
+      <li><a routerLink="/home/dashboard">Dashboard</a></li>
+      <li><a routerLink="/home/facultyManagement">Faculty Management</a></li>
+      <li><a routerLink="/home/departmentManagement">Department Management</a></li>
+      <li><a routerLink="/home/teacher">Teacher Management</a></li>
+      <li><a routerLink="/home/academicProgram">Academic Program</a></li>
+      <li><a routerLink="/home/batch">Batch</a></li>
+      <li><a routerLink="/home/courseManagement">Course Management</a></li>
+      <li><a routerLink="/home/semester">Semesters</a></li>
+      <li><a routerLink="/home/studentManagement">Student Management</a></li>
+      <li><a routerLink="/home/attendance">Attendance</a></li>
+      <li><a routerLink="/home/result">Result Processing</a></li>
+      <li><a routerLink="/home/grade">Grades</a></li>
+      <!-- <li><a routerLink="/home/exam">Examination</a></li>
+      <li><a routerLink="/home/finance">Finance</a></li>
+      <li><a routerLink="/home/timetable">Timetable</a></li>
+      <li><a routerLink="/home/library">Library</a></li>
+      <li><a routerLink="/home/reports">Reports</a></li>
+      <li><a routerLink="/home/settings">Settings</a></li> -->
+    </ul>
+  </aside>
+
+  <main class="main-content">
+    <router-outlet></router-outlet>
+  </main>
+</div>
+
+<footer>
+  &copy; 2023 University Management System. All rights reserved.
+</footer>

@@ -1,0 +1,103 @@
+<div class="finance-page">
+    <h2 class="section-title">🎓 University Finance - Credit Fee Payment</h2>
+  
+    <div class="search-section">
+      <div class="form-group">
+        <label for="department">Department:</label>
+        <select id="department">
+          <option disabled selected>Select Department</option>
+          <option>CSE</option>
+          <option>EEE</option>
+          <option>BBA</option>
+          <option>English</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="year">Year:</label>
+        <select id="year">
+          <option disabled selected>Select Year</option>
+          <option>1st Year</option>
+          <option>2nd Year</option>
+          <option>3rd Year</option>
+          <option>4th Year</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="semester">Semester:</label>
+        <select id="semester">
+          <option disabled selected>Select Semester</option>
+          <option>Spring</option>
+          <option>Summer</option>
+          <option>Fall</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="student-id">Student ID:</label>
+        <input type="text" id="student-id" placeholder="Enter Student ID" />
+      </div>
+      <button class="btn-search">🔍 Search Fee</button>
+    </div>
+  
+    <div class="fee-details">
+      <h3>💰 Credit Fee Breakdown</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Course Code</th>
+            <th>Course Title</th>
+            <th>Credit Hours</th>
+            <th>Fee per Credit</th>
+            <th>Total Fee</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>CSE 101</td>
+            <td>Programming Fundamentals</td>
+            <td>3</td>
+            <td>1500</td>
+            <td>4500</td>
+          </tr>
+          <tr>
+            <td>CSE 102</td>
+            <td>Data Structures</td>
+            <td>3</td>
+            <td>1500</td>
+            <td>4500</td>
+          </tr>
+          <tr>
+            <td>ENG 103</td>
+            <td>Technical Writing</td>
+            <td>2</td>
+            <td>1500</td>
+            <td>3000</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <div class="notice-section">
+      <h3>📢 Credit Fee Related Notices</h3>
+      <ul>
+        <li>Last date for Summer 2025 fee payment is 20th May 2025.</li>
+        <li>Late payment will incur a fine of 500 BDT.</li>
+        <li>Students can pay via bank or mobile payment.</li>
+      </ul>
+    </div>
+  
+    <div class="payment-section">
+      <h3>📝 Submit Credit Fee Payment</h3>
+      <form class="payment-form">
+        <input type="text" placeholder="Enter Student ID" required />
+        <input type="text" placeholder="Total Amount (BDT)" required />
+        <select required>
+          <option disabled selected>Select Payment Method</option>
+          <option>Bank Payment</option>
+          <option>Mobile Banking (Bkash/Nagad)</option>
+          <option>Card Payment</option>
+        </select>
+        <button type="submit" class="btn-pay">💳 Submit Payment</button>
+      </form>
+    </div>
+  </div>
+  

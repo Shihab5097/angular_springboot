@@ -1,0 +1,92 @@
+<div class="semester-form">
+  <h2>Semester Management</h2>
+  <form (ngSubmit)="saveSemester()">
+    <div class="form-group">
+      <label>Semester Name</label>
+      <input type="text" [(ngModel)]="newSemester.semesterName" name="semesterName" placeholder="Semester Name" required />
+    </div>
+
+    <div class="form-group">
+      <label>Semester Code</label>
+      <input type="text" [(ngModel)]="newSemester.semesterCode" name="semesterCode" placeholder="Semester Code" required />
+    </div>
+
+    <div class="form-group">
+      <label>Start Date</label>
+      <input type="date" [(ngModel)]="newSemester.startDate" name="startDate" required />
+    </div>
+
+    <div class="form-group">
+      <label>End Date</label>
+      <input type="date" [(ngModel)]="newSemester.endDate" name="endDate" required />
+    </div>
+
+    <div class="form-group">
+      <label>Description</label>
+      <input type="text" [(ngModel)]="newSemester.description" name="description" placeholder="Description" />
+    </div>
+
+    <div class="form-group">
+      <label>Status</label>
+      <select [(ngModel)]="newSemester.status" name="status" required>
+        <option value="" disabled selected>Select Status</option>
+        <option value="Upcoming">Upcoming</option>
+        <option value="Ongoing">Ongoing</option>
+        <option value="Completed">Completed</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Department</label>
+      <select [(ngModel)]="newSemester.department" name="department" (change)="onDepartmentChange()" required>
+        <option [ngValue]="null" disabled selected>Select Department</option>
+        <option *ngFor="let dept of departments" [ngValue]="dept">{{ dept.departmentName }}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Academic Program</label>
+      <select [(ngModel)]="newSemester.academicProgram" name="academicProgram" required>
+        <option [ngValue]="null" disabled selected>Select Academic Program</option>
+        <option *ngFor="let prog of filteredPrograms" [ngValue]="prog">{{ prog.programName }}</option>
+      </select>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit">{{ newSemester.semesterId ? 'Update' : 'Add' }} Semester</button>
+      <button type="button" (click)="resetForm()">Reset</button>
+    </div>
+  </form>
+</div>
+
+<hr />
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Code</th>
+      <th>Start</th>
+      <th>End</th>
+      <th>Status</th>
+      <th>Department</th>
+      <th>Program</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let sem of semesters">
+      <td>{{ sem.semesterName }}</td>
+      <td>{{ sem.semesterCode }}</td>
+      <td>{{ sem.startDate }}</td>
+      <td>{{ sem.endDate }}</td>
+      <td>{{ sem.status }}</td>
+      <td>{{ sem.department?.departmentName }}</td>
+      <td>{{ sem.academicProgram?.programName }}</td>
+      <td>
+        <button (click)="editSemester(sem)">Edit</button>
+        <button (click)="deleteSemester(sem.semesterId!)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

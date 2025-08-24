@@ -1,0 +1,138 @@
+<div class="batch-container">
+  <h2>Course Management</h2>
+
+  <form #courseForm="ngForm" (ngSubmit)="saveCourse(courseForm)" class="batch-form">
+
+    <input
+      type="text"
+      name="courseCode"
+      [(ngModel)]="newCourse.courseCode"
+      placeholder="Course Code"
+      required
+    />
+
+    <input
+      type="text"
+      name="courseTitle"
+      [(ngModel)]="newCourse.courseTitle"
+      placeholder="Course Title"
+      required
+    />
+
+    <input
+      type="number"
+      name="credit"
+      [(ngModel)]="newCourse.credit"
+      placeholder="Credit"
+      required
+    />
+
+    <select
+      name="type"
+      [(ngModel)]="newCourse.type"
+      required
+    >
+      <option value="Theory">Theory</option>
+      <option value="Lab">Lab</option>
+    </select>
+
+    <select
+      name="department"
+      [(ngModel)]="newCourse.department"
+      (ngModelChange)="onDepartmentChange()"
+      required
+    >
+      <option [ngValue]="null" disabled>-- Select Department --</option>
+      <option
+        *ngFor="let dept of departments"
+        [ngValue]="dept"
+      >
+        {{ dept.departmentName }}
+      </option>
+    </select>
+
+    <select
+      name="program"
+      [(ngModel)]="newCourse.program"
+      [disabled]="!filteredPrograms.length"
+      required
+    >
+      <option [ngValue]="null" disabled>-- Select Academic Program --</option>
+      <option
+        *ngFor="let prog of filteredPrograms"
+        [ngValue]="prog"
+      >
+        {{ prog.programName }}
+      </option>
+    </select>
+
+    <label>
+      <input
+        type="checkbox"
+        name="isOptional"
+        [(ngModel)]="newCourse.isOptional"
+      />
+      Optional Course?
+    </label>
+
+    <button
+      type="submit"
+      [disabled]="!courseForm.form.valid"
+    >
+      {{ newCourse.courseId ? 'Update' : 'Add' }} Course
+    </button>
+    <button
+      type="button"
+      (click)="resetForm(courseForm)"
+    >
+      Reset
+    </button>
+
+  </form>
+
+  <div class="assign-buttons" style="margin:1rem 0;">
+    <button
+      type="button"
+      routerLink="/home/assigncoursestudent"
+    >
+      Assign Course to Student
+    </button>
+    <button
+      type="button"
+      routerLink="/home/assigncourseteacher"
+      style="margin-left:0.5rem;"
+    >
+      Assign Course to Teacher
+    </button>
+  </div>
+
+  <table class="batch-table">
+    <thead>
+      <tr>
+        <th>Code</th>
+        <th>Title</th>
+        <th>Credit</th>
+        <th>Type</th>
+        <th>Optional</th>
+        <th>Department</th>
+        <th>Program</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let course of courses">
+        <td>{{ course.courseCode }}</td>
+        <td>{{ course.courseTitle }}</td>
+        <td>{{ course.credit }}</td>
+        <td>{{ course.type }}</td>
+        <td>{{ course.isOptional ? 'Yes' : 'No' }}</td>
+        <td>{{ course.department?.departmentName }}</td>
+        <td>{{ course.program?.programName }}</td>
+        <td>
+          <button (click)="editCourse(course)">Edit</button>
+          <button (click)="deleteCourse(course.courseId!)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

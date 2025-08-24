@@ -1,0 +1,122 @@
+.program-page {
+  padding: 20px;
+}
+
+.program-page h2 {
+  font-size: 28px;
+  color: #2c3e50;
+  border-left: 6px solid #27ae60;
+  padding-left: 1rem;
+  margin-bottom: 2rem;
+}
+
+.form-row {
+  margin-bottom: 15px;
+}
+
+.form-row label {
+  display: inline-block;
+  width: 150px;
+}
+
+.form-row input,
+.form-row select,
+.form-row textarea {
+  padding: 10px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: #f9f9f9;
+  flex: 1 1 180px;
+  min-width: 180px;
+}
+
+.form-row textarea {
+  resize: vertical;
+}
+
+.form-section {
+  border: 1px solid #ccc;
+  padding: 15px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.form-actions {
+  margin-top: 10px;
+}
+
+.form-actions button {
+  padding: 12px 18px;
+  background-color: #2ecc71;
+  color: white;
+  border: none;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+  height: fit-content;
+  align-self: flex-start;
+}
+
+.form-actions button:hover {
+  background-color: #27ae60;
+}
+
+hr {
+  margin-top: 20px;
+}
+
+.table-section h3 {
+  font-size: 22px;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.table-section table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  font-size: 15px;
+}
+
+.table-section th,
+.table-section td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+.table-section thead {
+  background-color: #d1f2eb;
+  color: #145a32;
+  font-weight: bold;
+}
+
+.table-section button {
+  padding: 6px 12px;
+  margin: 2px;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.table-section button:first-child {
+  background-color: #2980b9;
+  color: white;
+}
+
+.table-section button:first-child:hover {
+  background-color: #21618c;
+}
+
+.table-section button:last-child {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.table-section button:last-child:hover {
+  background-color: #c0392b;
+}

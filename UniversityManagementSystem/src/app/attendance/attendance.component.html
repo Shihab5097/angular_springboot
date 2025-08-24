@@ -1,0 +1,58 @@
+<h2>Attendance</h2>
+
+<div class="controls">
+  <select [(ngModel)]="selectedCourseId"
+          (ngModelChange)="onCourseChange()"
+          name="course" required>
+    <option [ngValue]="null">-- Select Course --</option>
+    <option *ngFor="let c of courses" [ngValue]="c.courseId">
+      {{ c.courseTitle }}
+    </option>
+  </select>
+
+  <input type="date" [(ngModel)]="showDate" />
+
+  <button (click)="saveAttendance()"
+          [disabled]="!selectedCourseId">
+    Save Attendance
+  </button>
+</div>
+
+<table *ngIf="assignments.length">
+  <thead>
+    <tr>
+      <th>Student</th>
+      <th>Batch</th>
+      <th>Present</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let a of assignments">
+      <td>{{ a.student.studentName }}</td>
+      <td>{{ a.student.batch.name }}</td>
+      <td>
+        <input type="checkbox"
+               [checked]="attendanceRecords.get(a.student.studentId!)?.present"
+               (change)="toggle(a.student.studentId!)" />
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Attendance Percentage</h3>
+<table *ngIf="assignments.length">
+  <thead>
+    <tr>
+      <th>Student</th>
+      <th>Batch</th>
+      <th>Attendance %</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let a of assignments">
+      <td>{{ a.student.studentName }}</td>
+      <td>{{ a.student.batch.name }}</td>
+      <td>{{ getPercentage(a.student.studentId!) }}</td>
+    </tr>
+  </tbody>
+</table>
